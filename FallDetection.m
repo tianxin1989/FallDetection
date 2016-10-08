@@ -224,7 +224,7 @@
          _acceNorm = [dataSegment calculateAcceNorm:data.acceleration.x
                                                   y:data.acceleration.y
                                                   z:data.acceleration.z];
-
+         [delegate fallGraphDraw:_acceNorm];
          // collect data
          if (![dataSegment addData:_acceNorm]) {
              int score = [dataSegment findPeaksWithinThreshold];

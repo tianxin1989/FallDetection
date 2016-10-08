@@ -45,4 +45,5 @@
 
 @protocol FallDetectionDelegate
 -(void) fallScoreAlarm:(FallDetection*)controller;
+-(void) fallGraphDraw:(double)value;
 @end
