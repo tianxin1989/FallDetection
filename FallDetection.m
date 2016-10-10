@@ -16,7 +16,7 @@
 
 -(BOOL)addData:(double)a;
 -(void)reset;
-
+@property (nonatomic) BOOL isDeciding;
 @end
 
 
@@ -25,7 +25,6 @@
     double ahistory[61];
     int index;
     int fallScore;
-    bool isDeciding;
 }
 
 
@@ -36,7 +35,7 @@
     {
         index = 61;
         fallScore = 10;
-        isDeciding = NO;
+        _isDeciding = NO;
     }
     return self;
 }
@@ -63,7 +62,7 @@
     memset(ahistory, 0, sizeof(ahistory));
     index = 61;
     fallScore = 10;
-    isDeciding = NO;
+    _isDeciding = NO;
 }
 
 
@@ -140,10 +139,7 @@
 
 -(int) findPeaksWithinThreshold
 {
-    if (isDeciding)
-        return -1;
-    else
-        isDeciding = YES;
+    _isDeciding = YES;
     
     //NSLog(@"findPeaksWithinThreshold");
     float dropThreshold = 1;
@@ -226,19 +222,26 @@
                                                   z:data.acceleration.z];
          [delegate fallGraphDraw:_acceNorm];
          // collect data
-         if (![dataSegment addData:_acceNorm]) {
-             int score = [dataSegment findPeaksWithinThreshold];
-             
-             if (score < 10 && score >= 7) {
-                 NSLog(@"fallscore %d", score);
-                 //NSLog(@"Are you ok!?");
-                 [delegate fallScoreAlarm:self];
-             }
+         if (![dataSegment addData:_acceNorm] && !dataSegment.isDeciding) {             
+            // if (!dataSegment.isDeciding)
+            // {
+                 int score = [dataSegment findPeaksWithinThreshold];
+                 if (score < 10 && score >= 7) {
+                     NSLog(@"fallscore %d", score);
+                     //NSLog(@"Are you ok!?");
+                     [delegate fallScoreAlarm:self score:score];
+                 } else {
+                     [delegate fallScoreUpdate:score];
+                 }
+           //  }
          };
-
      }];
 }
 
+-(void) resumeCheck
+{
+    [dataSegment reset];
+}
 
 - (void)stopUpdates
 {

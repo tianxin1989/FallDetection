@@ -24,7 +24,7 @@
 + (FallDetection*)shareInstance;
 - (void) startUpdatesWithInterval:(NSTimeInterval)updateInterval;
 - (void) stopUpdates;
-
+- (void) resumeCheck;
 //- (void) registerUserToDbname:(NSString *)dbname
 //                       withID:(NSString *) withId
 //                     dictData:(NSDictionary *)dict
@@ -44,6 +44,7 @@
 @end
 
 @protocol FallDetectionDelegate
--(void) fallScoreAlarm:(FallDetection*)controller;
+-(void) fallScoreAlarm:(FallDetection*)controller score:(int)score;
 -(void) fallGraphDraw:(double)value;
+-(void) fallScoreUpdate:(int)value;
 @end
