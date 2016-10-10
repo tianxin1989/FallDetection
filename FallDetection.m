@@ -245,9 +245,12 @@
 
 - (void)stopUpdates
 {
-    if ([motionManager isAccelerometerActive] == YES) {
-        [motionManager stopAccelerometerUpdates];
-    }
+    [motionManager stopAccelerometerUpdates];
+}
+
+-(BOOL) checkIsActive
+{
+    return [motionManager isAccelerometerActive];
 }
 
 

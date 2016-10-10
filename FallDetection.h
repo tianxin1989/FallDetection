@@ -24,6 +24,7 @@
 + (FallDetection*)shareInstance;
 - (void) startUpdatesWithInterval:(NSTimeInterval)updateInterval;
 - (void) stopUpdates;
+- (BOOL) checkIsActive;
 - (void) resumeCheck;
 //- (void) registerUserToDbname:(NSString *)dbname
 //                       withID:(NSString *) withId
