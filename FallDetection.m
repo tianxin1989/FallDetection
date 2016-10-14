@@ -11,9 +11,7 @@
 
 
 #pragma mark - DataSegment
-
 @interface DataSegment : NSObject
-
 -(BOOL)addData:(double)a;
 -(void)reset;
 @property (nonatomic) BOOL isDeciding;
@@ -47,7 +45,7 @@
     if (index > 0) {
         --index;
         ahistory[index] = a;
-     //   NSLog(@"acce %f", a);
+     // NSLog(@"acce %f", a);
     } else {
         return 0;
     }
