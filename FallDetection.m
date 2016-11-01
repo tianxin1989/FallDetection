@@ -11,19 +11,13 @@
 
 
 #pragma mark - DataSegment
-@interface DataSegment : NSObject
--(BOOL)addData:(double)a;
--(void)reset;
-@property (nonatomic) BOOL isDeciding;
-@end
-
-
 @implementation DataSegment
 {
     double ahistory[61];
     int index;
     int fallScore;
 }
+@synthesize dropThreshold;
 
 
 -(id)init
@@ -34,6 +28,7 @@
         index = 61;
         fallScore = 10;
         _isDeciding = NO;
+        dropThreshold = 1;
     }
     return self;
 }
@@ -140,9 +135,9 @@
     _isDeciding = YES;
     
     //NSLog(@"findPeaksWithinThreshold");
-    float dropThreshold = 1;
+    // float dropThreshold = 1;
     double mean = [self getMeanValue];
-    NSLog(@"mean: %f", mean);
+    NSLog(@"mean: %f // dropThreshold: %f", mean, dropThreshold);
     
     for (int t=0; t<60; ++t) {
         if ((ahistory[t] - ahistory[t-1]) >  mean &&
@@ -175,10 +170,8 @@
 @interface FallDetection ()
 @property (nonatomic,strong) CMMotionManager *motionManager;
 @property (nonatomic) double acceNorm;
-@property (nonatomic) DataSegment *dataSegment;
+// @property (nonatomic) DataSegment *dataSegment;
 @property (nonatomic) float startTime;
-
-
 
 @end
 
@@ -195,7 +188,7 @@
     dispatch_once(&done, ^{
         shareInstance = [[FallDetection alloc] init];
         shareInstance.motionManager = [[CMMotionManager alloc]init];
-        shareInstance.dataSegment = [[DataSegment alloc]init];
+        shareInstance.dataSegment = [[DataSegment alloc] init];
     });
     return shareInstance;
 }

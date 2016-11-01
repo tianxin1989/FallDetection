@@ -16,9 +16,16 @@
 
 @protocol FallDetectionDelegate;
 
+@interface DataSegment : NSObject
+-(BOOL)addData:(double)a;
+-(void)reset;
+@property (nonatomic) BOOL isDeciding;
+@property (nonatomic) float dropThreshold;
+@end
+
 
 @interface FallDetection : NSObject
-
+@property (nonatomic) DataSegment *dataSegment;
 @property (nonatomic,strong) id<FallDetectionDelegate> delegate;
 
 + (FallDetection*)shareInstance;
