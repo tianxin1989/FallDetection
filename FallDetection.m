@@ -93,7 +93,7 @@
 { //return ([self maxValue] - [self minValue])/60;
     double sum = 0;
     for (int i=0; i<60; ++i) {
-        sum += fabs(ahistory[i] - ahistory[i+1]);
+        sum += fabs(ahistory[i] - ahistory[i+1]); // fabs - abs value
     }
     return sum/60;
 }

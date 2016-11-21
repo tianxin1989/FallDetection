@@ -33,21 +33,7 @@
 - (void) stopUpdates;
 - (BOOL) checkIsActive;
 - (void) resumeCheck;
-//- (void) registerUserToDbname:(NSString *)dbname
-//                       withID:(NSString *) withId
-//                     dictData:(NSDictionary *)dict
-//                     onReturn:(void (^)(BOOL success)) returnBlock;
-//
-//- (void) queryUserfromDbname:(NSString*) dbname
-//                 queryString:(NSString*) query
-//                    onReturn:(void (^)(NSDictionary *response)) returnBlock;
-//
-//- (void) addMessageListener:(NSString*) dbname
-//                queryString:(NSString*) query
-//                   onReturn:(void (^) (NSDictionary *response)) returnBlock;
-//
-//-(void) removeMessageListener;
-//
+
 
 @end
 
