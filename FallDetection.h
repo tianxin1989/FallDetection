@@ -14,6 +14,12 @@
 #include <sys/sysctl.h>
 
 
+#define kUpperThreshold @2.34 
+#define kLowerThreshold @0.3
+#define kPeakRange @0.5
+#define kFallScoreMax @9
+#define kFallScoreMin @7
+
 @protocol FallDetectionDelegate;
 
 @interface DataSegment : NSObject
@@ -21,6 +27,8 @@
 -(void)reset;
 @property (nonatomic) BOOL isDeciding;
 @property (nonatomic) float dropThreshold;
+
+
 @end
 
 
@@ -33,8 +41,6 @@
 - (void) stopUpdates;
 - (BOOL) checkIsActive;
 - (void) resumeCheck;
-
-
 @end
 
 @protocol FallDetectionDelegate
