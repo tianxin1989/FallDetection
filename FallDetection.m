@@ -216,7 +216,7 @@
         }
     }
     
-    if (!(fallScore < [kFallScoreMax intValue] &&
+    if (!(fallScore < [kFallScoreMax intValue]+dropThreshold &&
           fallScore >= [kFallScoreMin intValue]))
     {
         [self reset];
@@ -249,7 +249,7 @@
         }
     }
     
-    if (!(fallScore < [kFallScoreMax intValue] &&
+    if (!(fallScore < [kFallScoreMax intValue]+dropThreshold &&
           fallScore >= [kFallScoreMin intValue]))
     {
         [self reset];
@@ -323,7 +323,7 @@
               [dataSegment testingFindPeaks];*/
          
              int score = [dataSegment findPeaks];
-             if (score < [kFallScoreMax intValue] &&
+             if (score < [kFallScoreMax intValue] + dataSegment.dropThreshold &&
                  score >= [kFallScoreMin intValue])
              {
                  NSLog(@"fallscore %d", score); // NSLog(@"Are you ok!?");
