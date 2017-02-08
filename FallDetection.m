@@ -101,6 +101,7 @@
         [objcArray addObject:[NSNumber numberWithFloat:ahistory[i]]];
         NSLog(@"%f",[objcArray[i] floatValue]);
     }
+    // smallest to largest
     [objcArray sortUsingSelector:@selector(compare:)];
     int findIdx = (60+1) /2; // find mid point..
     return [objcArray[findIdx] floatValue];
